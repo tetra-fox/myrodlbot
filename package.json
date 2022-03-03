@@ -3,7 +3,7 @@
     "version": "1.0.0",
     "scripts": {
         "start": "npm run clean && tsc && node ./build/index.js",
-        "clean": "rimraf ./tmp && rimraf ./bin",
+        "clean": "rimraf ./tmp && rimraf ./bin && rimraf ./build && rimraf ./dist",
         "build": "tsc && pkg ."
     },
     "repository": {
