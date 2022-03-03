@@ -1,4 +1,4 @@
-import { unlink, readdir, createReadStream, statSync } from "fs";
+import { unlink, createReadStream, statSync } from "fs";
 
 import TelegramBot, { Message, ParseMode } from "node-telegram-bot-api";
 
