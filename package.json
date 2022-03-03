@@ -1,0 +1,43 @@
+{
+    "name": "myrodlbot",
+    "version": "1.0.0",
+    "scripts": {
+        "start": "npm run clean && tsc && node ./build/index.js",
+        "clean": "rimraf ./tmp && rimraf ./bin",
+        "build": "tsc && pkg ."
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/tetra-fox/myrodlbot.git"
+    },
+    "author": "tetra",
+    "license": "GPL-3.0",
+    "bugs": {
+        "url": "https://github.com/tetra-fox/myrodlbot/issues"
+    },
+    "homepage": "https://github.com/tetra-fox/myrodlbot#readme",
+    "devDependencies": {
+        "pkg": "^5.5.2",
+        "rimraf": "^3.0.2",
+        "typescript": "^4.6.2"
+    },
+    "dependencies": {
+        "@types/node-telegram-bot-api": "^0.56.0",
+        "dotenv": "^16.0.0",
+        "nanoid": "^3.3.1",
+        "node-telegram-bot-api": "^0.56.0",
+        "yt-dlp-wrap": "^2.3.11"
+    },
+    "bin": {
+        "index": "./build/index.js"
+    },
+    "pkg": {
+        "scripts": "./build/**/*.js",
+        "targets": [
+            "node17-linux-x64",
+            "node17-macos-x64",
+            "node17-win-x64"
+        ],
+        "outputPath": "dist"
+    }
+}
