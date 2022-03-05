@@ -4,8 +4,10 @@
     "scripts": {
         "start": "npm run clean && tsc && node ./build/index.js",
         "clean": "rimraf ./tmp && rimraf ./bin && rimraf ./build && rimraf ./dist",
-        "build": "tsc && pkg ."
+        "rollup": "rollup --config rollup.config.js --environment BUILD:production",
+        "build": "npm run rollup && tsc && pkg ."
     },
+    "main": "./build/app.js",
     "repository": {
         "type": "git",
         "url": "git+https://github.com/tetra-fox/myrodlbot.git"
@@ -19,13 +21,16 @@
     "devDependencies": {
         "pkg": "^5.5.2",
         "rimraf": "^3.0.2",
+        "rollup": "^2.69.0",
         "typescript": "^4.6.2"
     },
     "dependencies": {
         "@types/node-telegram-bot-api": "^0.56.0",
+        "chalk": "^5.0.0",
         "dotenv": "^16.0.0",
         "nanoid": "^3.3.1",
         "node-telegram-bot-api": "^0.56.0",
+        "telegraf": "^4.7.0",
         "yt-dlp-wrap": "^2.3.11"
     },
     "bin": {

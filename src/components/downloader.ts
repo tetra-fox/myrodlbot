@@ -47,7 +47,7 @@ export default class Downloader {
                 "--add-metadata",
                 "--concurrent-fragments=4",
                 "-o",
-                `%(uploader)s - %(title)s [${song.id}].%(ext)s`,
+                `${song.artist} - ${song.title} [${song.id}].%(ext)s`,
                 "-P",
                 config.tmpPath
             ])

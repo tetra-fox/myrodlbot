@@ -1,8 +1,5 @@
 import YTDlpWrap from "yt-dlp-wrap";
-
 import { nanoid } from "nanoid";
-
-let current_queue: Song[] = [];
 
 export default class Queue {
     static async add(url: URL): Promise<Song> {
@@ -13,19 +10,25 @@ export default class Queue {
                 .catch((err) => {
                     reject(err);
                 });
+            let artist = metadata.uploader || metadata.artist || "Unknown";
+            let title = metadata.title || "Unknown";
+            // remove artist from title
+            if (title.toLowerCase().startsWith(artist.toLowerCase() + " - ")) {
+                title = title.substr(artist.length + 3); // +3 for " - "
+            }
             let newSong: Song = {
-                artist: metadata.uploader || "Unknown",
-                title: metadata.title || "Unknown",
+                artist,
+                title,
                 url,
                 id: nanoid(),
-                fmt: `[${metadata.uploader || "Unknown"} - ${metadata.title || "Unknown"}](${url.href})`,
+                fmt: `[${artist || "Unknown"} - ${title || "Unknown"}](${url.href})`,
             };
-            current_queue.push(newSong);
+            this.queue.push(newSong);
             resolve(newSong);
         });
     }
     static remove(songToRemove: Song) {
-        current_queue = current_queue.filter((song) => song !== songToRemove);
+        this.queue = this.queue.filter((song) => song !== songToRemove);
     }
-    static queue = current_queue;
+    static queue: Song[] = [];
 }
