@@ -1,23 +1,15 @@
 {
     "name": "myrodlbot",
+    "author": "tetra",
     "version": "1.0.0",
+    "license": "GPL-3.0",
+    "main": "./build/app.js",
     "scripts": {
         "start": "npm run clean && tsc && node ./build/index.js",
         "clean": "rimraf ./tmp && rimraf ./bin && rimraf ./build && rimraf ./dist",
         "rollup": "rollup --config rollup.config.js --environment BUILD:production",
         "build": "npm run rollup && tsc && pkg ."
     },
-    "main": "./build/app.js",
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/tetra-fox/myrodlbot.git"
-    },
-    "author": "tetra",
-    "license": "GPL-3.0",
-    "bugs": {
-        "url": "https://github.com/tetra-fox/myrodlbot/issues"
-    },
-    "homepage": "https://github.com/tetra-fox/myrodlbot#readme",
     "devDependencies": {
         "@types/node": "^17.0.21",
         "pkg": "^5.5.2",

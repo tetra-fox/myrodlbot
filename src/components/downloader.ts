@@ -53,7 +53,7 @@ export default class Downloader {
             ])
             .on("progress", (progress) => {
                 RateLimit.handle(() => {
-                    events.emit("dlEvent", "progress", progress)
+                    events.emit("dlEvent", "progress", progress);
                 });
             })
             .on("ytDlpEvent", (eventType, _) => {
@@ -80,10 +80,7 @@ export default class Downloader {
             .on("close", async () => {
                 events.emit(
                     "done",
-                    path.resolve(
-                        config.tmpPath,
-                        `${song.id}.mp3`
-                    )
+                    path.resolve(config.tmpPath, `${song.id}.mp3`)
                 );
             });
         return events;
