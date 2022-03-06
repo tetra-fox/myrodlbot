@@ -47,7 +47,7 @@ export default class Downloader {
                 "--add-metadata",
                 "--concurrent-fragments=4",
                 "-o",
-                `${song.artist} - ${song.title} [${song.id}].%(ext)s`,
+                `${song.id}.%(ext)s`,
                 "-P",
                 config.tmpPath
             ])
@@ -82,7 +82,7 @@ export default class Downloader {
                     "done",
                     path.resolve(
                         config.tmpPath,
-                        `${song.artist} - ${song.title} [${song.id}].mp3`
+                        `${song.id}.mp3`
                     )
                 );
             });
