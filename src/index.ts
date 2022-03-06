@@ -1,24 +1,18 @@
-import Bot from "./components/bot";
-import MyroError from "./components/myroerror";
-import Downloader from "./components/downloader";
-
-import "./extensions/context"; // custom Context functions for Telegraf
+import Bot from "./components/bot.ts";
+import MyroError from "./components/myroerror.ts";
+import Downloader from "./components/downloader.ts";
 
 // load environment variables from .env file
-import "dotenv/config";
+import "https://deno.land/x/dotenv@v3.2.0/load.ts";
 
-(async () => {
-  if (!process.env.BOT_TOKEN_DEV) {
-    throw new MyroError({
-      message: "BOT_TOKEN was expected in the environment"
-    });
-  }
+let token = Deno.env.get("BOT_TOKEN_DEV");
 
-  await Downloader.getExecutable();
+if (!token) {
+  throw new MyroError({
+    message: "BOT_TOKEN was expected in the environment"
+  });
+}
 
-  Bot.init(process.env.BOT_TOKEN_DEV)
-    .then((_) => {
-      Bot.setupEventHandlers();
-    })
-    .catch((err) => console.error(err));
-})();
+Downloader.getExecutable();
+
+Bot.init(token).catch((err) => console.error(err));

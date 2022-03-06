@@ -1,12 +1,8 @@
-import os from "os";
+import os from "https://deno.land/x/dos@v0.11.0/mod.ts";
 
-let binPath = process.cwd() + "/bin";
-let ytdlpPath = binPath + "/yt-dlp" + (os.platform() === "win32" ? ".exe" : "");
-let tmpPath = process.cwd() +"/tmp";
-
-export default {
-    binPath,
-    ytdlpPath,
-    tmpPath,
-    sizeLimit: 5 * 1024 * 1024 * 1024
-};
+export default class Config {
+  static binPath = Deno.cwd() + "/bin";
+  static ytdlpPath = this.binPath + "/yt-dlp" + (os.platform() === "win32" ? ".exe" : "");
+  static tmpPath = Deno.cwd() + "/tmp";
+  static sizeLimit = 5 * 1024 * 1024 * 1024;
+}
