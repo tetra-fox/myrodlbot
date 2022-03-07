@@ -9,10 +9,10 @@ let token = Deno.env.get("BOT_TOKEN_DEV");
 
 if (!token) {
   throw new MyroError({
-    message: "BOT_TOKEN was expected in the environment"
+    message: "BOT_TOKEN was expected in the environment",
   });
 }
 
-Downloader.getExecutable();
+await Downloader.getExecutable();
 
-Bot.init(token).catch((err) => console.error(err));
+await Bot.init(token).catch((err) => console.error(err));

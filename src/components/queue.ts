@@ -1,16 +1,23 @@
-import YTDlpWrap from "yt-dlp-wrap";
-import { nanoid } from "nanoid";
-import { User } from "typegram";
+import { User } from "https://deno.land/x/grammy@v1.7.0/platform.deno.ts";
+// import YTDlpWrap from "https://esm.sh/yt-dlp-wrap";
+import { nanoid } from "https://deno.land/x/nanoid@v3.0.0/mod.ts";
+
+import Song from "../types/song.ts";
 
 export default class Queue {
   static async add(url: URL, requester: User): Promise<Song> {
     return new Promise(async (resolve, reject) => {
-      let metadata = await new YTDlpWrap()
-        .getVideoInfo(url.href)
-        .then((info) => info)
-        .catch((err) => {
-          reject(err);
-        });
+      // let metadata = await new YTDlpWrap()
+      //   .getVideoInfo(url.href)
+      //   .then((info) => info)
+      //   .catch((err) => {
+      //     reject(err);
+      //   });
+      let metadata = {
+        title: "test",
+        uploader: "test",
+        artist: "test",
+      };
       let artist = metadata.uploader || metadata.artist || "Unknown";
       let title = metadata.title || "Unknown";
       // remove artist from title
@@ -23,7 +30,7 @@ export default class Queue {
         url,
         id: nanoid(),
         fmt: `[${artist || "Unknown"} \\- ${title || "Unknown"}](${url.href})`,
-        requester
+        requester,
       };
       this.queue.push(newSong);
       resolve(newSong);
