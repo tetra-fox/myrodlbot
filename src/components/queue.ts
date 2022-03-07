@@ -8,7 +8,7 @@ export default class Queue {
   static async add(url: URL, requester: User): Promise<Song> {
     return new Promise(async (resolve, reject) => {
       // let metadata = await new YTDlpWrap()
-      //   .getVideoInfo(url.href)
+      //   .getMetadata(url)
       //   .then((info) => info)
       //   .catch((err) => {
       //     reject(err);
