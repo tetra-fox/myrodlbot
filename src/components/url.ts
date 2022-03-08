@@ -1,4 +1,4 @@
-import MyroMessage, { MyroMessageLevel } from "./MyroMessage.ts";
+import MyroMessage, { MyroMessageLevel } from "./myromessage.ts";
 
 const validSources = [
 	{

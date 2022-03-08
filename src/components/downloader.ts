@@ -4,7 +4,7 @@ import YtDlpWrapper from "../lib/ytdlpwrapper-deno.ts";
 
 import Config from "./config.ts";
 import Song from "../types/song.ts";
-import MyroMessage, { MyroMessageLevel } from "./MyroMessage.ts";
+import MyroMessage, { MyroMessageLevel } from "./myromessage.ts";
 import RateLimit from "./ratelimit.ts";
 
 export default class Downloader {

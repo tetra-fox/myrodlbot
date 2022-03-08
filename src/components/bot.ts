@@ -4,7 +4,7 @@ import { run, RunnerHandle, sequentialize } from "https://deno.land/x/grammy_run
 import Config from "./config.ts";
 import Queue from "./queue.ts";
 import Url from "./url.ts";
-import MyroMessage, { MyroMessageLevel } from "./MyroMessage.ts";
+import MyroMessage, { MyroMessageLevel } from "./myromessage.ts";
 import Downloader from "./downloader.ts";
 
 import "../extensions/context.ts"; // custom Context functions for grammY
