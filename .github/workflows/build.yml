@@ -13,6 +13,9 @@ jobs:
         with:
           deno-version: v1.x
 
+      - name: Lint
+        run: deno lint --config deno.json
+
       - name: Build
         run: |
           chmod +x ./scripts/*.sh
