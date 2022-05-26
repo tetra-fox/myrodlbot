@@ -1,18 +1,46 @@
-import Bot from "./components/bot";
-import MyroError from "./components/myroerror";
-import Downloader from "./components/downloader";
+import Bot from "./components/bot.ts";
+import MyroMessage, { MyroMessageLevel } from "./components/myromessage.ts";
+import Downloader from "./components/downloader.ts";
+import Config from "./components/config.ts";
 
-// load environment variables from .env file
-import "dotenv/config";
+// Load environment variables from .env file
+import "https://deno.land/x/dotenv@v3.2.0/load.ts";
 
-let token = process.env.BOT_TOKEN_DEV;
+const token = Deno.env.get("BOT_TOKEN_DEV") || Deno.env.get("BOT_TOKEN");
 
 if (!token) {
-    throw new MyroError({
-        message: "BOT_TOKEN was expected in the environment"
-    });
+	new MyroMessage({
+		message: "BOT_TOKEN was expected in the environment",
+		level: MyroMessageLevel.FATAL,
+	});
 }
 
-Downloader.getExecutable();
+if (!(await Deno.stat(Config.logPath).then(() => true).catch(() => false))) {
+	await Deno.mkdir(Config.logPath);
+}
 
-Bot.init(token).catch((err) => console.error(err));
+// Check for ffmpeg
+try {
+	new MyroMessage({
+		message: "Checking for ffmpeg...",
+		level: MyroMessageLevel.INFO,
+	});
+	Deno.run({
+		cmd: ["ffmpeg"],
+		stdout: "null",
+		stderr: "null",
+	});
+	new MyroMessage({
+		message: "Found ffmpeg.",
+		level: MyroMessageLevel.INFO,
+	});
+} catch {
+	new MyroMessage({
+		message: "ffmpeg not found. Please install ffmpeg and ensure it is in your PATH.",
+		level: MyroMessageLevel.FATAL,
+	});
+}
+
+await Downloader.getExecutable();
+
+await Bot.init(token!).catch((err) => console.error(err));

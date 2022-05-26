@@ -8,15 +8,15 @@ jobs:
     steps:
       - uses: actions/checkout@v3.0.0
 
-      - name: Setup Node.js environment
-        uses: actions/setup-node@v3.0.0
+      - name: Setup Deno environment
+        uses: denoland/setup-deno@v1
         with:
-          node-version: "16"
+          deno-version: v1.x
 
-      - name: Restore dependencies and build
+      - name: Build
         run: |
-          npm ci
-          npm run build
+          chmod +x ./scripts/*.sh
+          ./scripts/build.sh
 
       - name: Get short commit SHA
         uses: benjlevesque/short-sha@v1.2

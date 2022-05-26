@@ -1,11 +1,17 @@
 {
-    "compilerOptions": {
-        "target": "es2021",
-        "module": "commonjs",
-        "outDir": "./build",
-        "esModuleInterop": true,
-        "forceConsistentCasingInFileNames": true,
-        "strict": true,
-        "skipLibCheck": true
-    }
+  "include": ["src/**/*.ts"],
+  "compilerOptions": {
+    "paths": {
+      "components": ["./src/components/bot.ts"]
+    },
+    "target": "es2021",
+    "module": "es2022",
+    "moduleResolution": "node",
+    "baseUrl": "./",
+    "outDir": "./build",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "skipLibCheck": true
+  }
 }
