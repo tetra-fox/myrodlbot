@@ -144,7 +144,7 @@ export default class Bot {
 						}
 						console.log(
 							`${"[" + current.title + "]"} Sending to ${
-								ctx.message!.from!.username || ctx.message!.from!.id
+								"@" + ctx.message!.from!.username || ctx.message!.from!.id
 							}...`,
 						);
 

@@ -1,17 +1,22 @@
 import Bot from "./components/bot.ts";
 import MyroMessage, { MyroMessageLevel } from "./components/myromessage.ts";
 import Downloader from "./components/downloader.ts";
+import Config from "./components/config.ts";
 
 // Load environment variables from .env file
 import "https://deno.land/x/dotenv@v3.2.0/load.ts";
 
-const token = Deno.env.get("BOT_TOKEN_DEV");
+const token = Deno.env.get("BOT_TOKEN_DEV") || Deno.env.get("BOT_TOKEN");
 
 if (!token) {
 	new MyroMessage({
 		message: "BOT_TOKEN was expected in the environment",
 		level: MyroMessageLevel.FATAL,
 	});
+}
+
+if (!(await Deno.stat(Config.logPath).then(() => true).catch(() => false))) {
+	await Deno.mkdir(Config.logPath);
 }
 
 // Check for ffmpeg
