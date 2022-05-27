@@ -1,5 +1,5 @@
-import { Context } from "https://deno.land/x/grammy@v1.7.0/mod.ts";
-import { InputFile, Message, Update } from "https://deno.land/x/grammy@v1.7.0/platform.deno.ts";
+import { Context } from "../../deps.ts";
+import { InputFile, Message, Update } from "../../deps.ts";
 import StringUtils from "../utils/string.ts";
 
 declare module "https://deno.land/x/grammy@v1.7.0/mod.ts" {
